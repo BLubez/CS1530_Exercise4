@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*; 
 import javax.swing.*;
 
-
 public class TicTacToe {
 	JFrame frame;
 	JButton[] _buttons;
@@ -14,16 +13,15 @@ public class TicTacToe {
 
 	public TicTacToe() {
 		frame = new JFrame("Tic-Tac-Toe");
-		playerOneTurn = true;
-
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		playerOneTurn = true;
 
 		JPanel tttGrid = new JPanel();
 		JPanel _newPanel = new JPanel();
-		//_newPanel.setBackground(Color.black);
 
 		tttGrid.setLayout(new GridLayout(3, 3));
-		//_newPanel.setLayout(new FlowLayout());
+		_newPanel.setLayout(new FlowLayout()); //totally unneccessary tbh
 
 		// This will place the tic-tac-toe panel at the top of
 		// the frame and the newPanel panel at the bottom
@@ -42,30 +40,22 @@ public class TicTacToe {
 	    	 // Add this button to the tttGrid panel
 			tttGrid.add(_buttons[j]);
 		}
+
 		JButton newGame = new JButton("New Game");
 		ActionListener buttonListener = new ButtonListener();
 		newGame.addActionListener(buttonListener);
 		newGame.setFont(new Font("Courier", Font.PLAIN, 36));
 		_newPanel.add(newGame);
-		//_newPanel.setBackground(Color.black);
-
-
-
-		frame.setSize(400, 300);
-
+	
 		// Refresh window - otherwise we will not be able to see it
 		// THIS IS A COMMON SOURCE OF BUGS!
+		frame.setSize(400, 250);
 		frame.setVisible(true);
 	}
 
-
 	private class ButtonListener implements ActionListener {
-
-	// Every time we click the button, it will perform
-	// the following action.
-
+	// Every time we click the button, it will perform the following action.
 		public void actionPerformed(ActionEvent e) {
-
 			JButton source = (JButton) e.getSource();
 			String currentText = source.getText();
 			if (currentText.equals("_")) {
@@ -84,11 +74,7 @@ public class TicTacToe {
 					_buttons[i].setEnabled(true);
 					playerOneTurn = true;
 				}
-			} else {
-				source.setText("_");
 			}
 		}
-
 	}
-
 }
